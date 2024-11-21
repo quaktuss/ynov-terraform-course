@@ -1,14 +1,21 @@
 resource "aws_security_group" "instance-sg" {
-  name        = "MPH-SecurityGroup_EC2"
+  name        = "MPN-SecurityGroup_EC2"
   description = "Allows http from alb securitygroups and nothing else"
   vpc_id      = var.vpc_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   lifecycle {
     create_before_destroy = true
   }
 
   tags = {
-    Name = "MPH-SecurityGroup_EC2"
+    Name = "MPN-SecurityGroup_EC2"
   }
 }
 
@@ -23,16 +30,23 @@ resource "aws_vpc_security_group_ingress_rule" "allows_http_from_lb" {
 }
 
 resource "aws_security_group" "lb-sg" {
-  name        = "MPH-SecurityGroup_LB"
+  name        = "MPN-SecurityGroup_LB"
   description = "Allows http from alb securitygroups and nothing else"
   vpc_id      = var.vpc_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   lifecycle {
     create_before_destroy = true
   }
 
   tags = {
-    Name = "MPH-SecurityGroup_EC2"
+    Name = "MPN-SecurityGroup_LB"
   }
 }
 

@@ -20,7 +20,7 @@ resource "aws_launch_template" "main-lt" {
 resource "aws_autoscaling_group" "main-asg" {
   vpc_zone_identifier = data.aws_subnets.vpc_subnets.ids
   # availability_zones  = var.authorized-asg-az
-  name             = "MPH-AutoscalingGroup"
+  name             = "MPN-AutoscalingGroup"
   max_size         = var.asg_capacity.max_size
   min_size         = var.asg_capacity.min_size
   desired_capacity = var.asg_capacity.desired_capacity
@@ -34,7 +34,7 @@ resource "aws_autoscaling_group" "main-asg" {
 
   tag {
     key                 = "Name"
-    value               = "MPH-Instance"
+    value               = "MPN-Instance"
     propagate_at_launch = true
   }
 }

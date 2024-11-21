@@ -13,7 +13,7 @@ resource "aws_lb" "main-lb" {
 }
 
 resource "aws_lb_target_group" "instance-targetgroup" {
-  name     = "MPH-TargetGroup"
+  name     = "MPN-TargetGroup"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
